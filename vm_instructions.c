@@ -24,10 +24,17 @@ FILE* tape_02;
 char tty_getchar();
 #endif
 
-/* Stub as the current specification makes all instructions 4 bytes but future enhancements may change that */
+/* Use first byte of next instruction to identify size */
 int next_instruction_size(struct lilith* vm)
 {
-	return 4;
+	uint8_t c = (uint8_t)vm->memory[vm->ip];
+
+	switch(c)
+	{
+		case 0xE0: return 6;
+		case 0xE1: return 6;
+		default: return 4;
+	}
 }
 
 /* Correctly write out bytes on little endian hardware */

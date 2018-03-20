@@ -1,37 +1,7 @@
-## Copyright (C) 2016 Jeremiah Orians
-## This file is part of stage0.
-##
-## stage0 is free software: you an redistribute it and/or modify
-## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation, either version 3 of the License, or
-## (at your option) any later version.
-##
-## stage0 is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU General Public License for more details.
-##
-## You should have received a copy of the GNU General Public License
-## along with stage0.  If not, see <http://www.gnu.org/licenses/>.
+This repo contains a software emulator, assembler, disassembler and M1 macro definitions file for the Knight hardware platform.
 
-The master repository for this work is located at:
-https://savannah.nongnu.org/projects/stage0/
+Those wishing to run ancient binaries in a bug compatible fashion, should checkout stage0_foundation_version as it complies exactly with the specification.
 
-This is a set of manually created hex programs in a Cthulhu Path to madness fashion.
-Which only have the goal of creating a bootstrapping path to a C compiler capable of
-Compiling GCC, with only the explicit requirement of a single 1 KByte binary or less.
+Some liberties were taken in later commits to free up precious opcode space and simplify implementation.
 
-Additionally, all code must be able to be understood by 70% of the population of programmers.
-If the code can not be understood by that volume, it needs to be altered until it satifies the above requirement.
-
-This repo contains a few of my false start pieces that may be of interest to people who
-want to independently create the root binary, I welcome all bug fixes and code that aids
-in the above stated goal.
-
-I'll be adding more code and documentation as I build pieces.
 ALL code in this REPO is under the GPLv3 or Later.
-
-In order to build stage0 and all the pieces, one only needs to run make all.
-Each individual piece can be built by simply running make $piece with $piece being replaced by the actual part you want to make.
-
-The only pieces that have any external dependencies are the Web IDE (Python3+CherryPy), libvm (GCC) and vm (GCC+GNU getopt)
