@@ -1317,8 +1317,7 @@ void JUMP_C(struct lilith* vm, struct Instruction* c)
 {
 	if(Carry_bit_set(vm->reg[c->reg0]))
 	{
-		/* Adust the IP relative the the start of this instruction*/
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1326,8 +1325,7 @@ void JUMP_B(struct lilith* vm, struct Instruction* c)
 {
 	if(Borrow_bit_set(vm->reg[c->reg0]))
 	{
-		/* Adust the IP relative the the start of this instruction*/
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1335,8 +1333,7 @@ void JUMP_O(struct lilith* vm, struct Instruction* c)
 {
 	if(Overflow_bit_set(vm->reg[c->reg0]))
 	{
-		/* Adust the IP relative the the start of this instruction*/
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1344,8 +1341,7 @@ void JUMP_G(struct lilith* vm, struct Instruction* c)
 {
 	if(GreaterThan_bit_set(vm->reg[c->reg0]))
 	{
-		/* Adust the IP relative the the start of this instruction*/
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1353,8 +1349,7 @@ void JUMP_GE(struct lilith* vm, struct Instruction* c)
 {
 	if(GreaterThan_bit_set(vm->reg[c->reg0]) || EQual_bit_set(vm->reg[c->reg0]))
 	{
-		/* Adust the IP relative the the start of this instruction*/
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1362,8 +1357,7 @@ void JUMP_E(struct lilith* vm, struct Instruction* c)
 {
 	if(EQual_bit_set(vm->reg[c->reg0]))
 	{
-		/* Adust the IP relative the the start of this instruction*/
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1371,8 +1365,7 @@ void JUMP_NE(struct lilith* vm, struct Instruction* c)
 {
 	if(!EQual_bit_set(vm->reg[c->reg0]))
 	{
-		/* Adust the IP relative the the start of this instruction*/
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1380,8 +1373,7 @@ void JUMP_LE(struct lilith* vm, struct Instruction* c)
 {
 	if(LessThan_bit_set(vm->reg[c->reg0]) || EQual_bit_set(vm->reg[c->reg0]))
 	{
-		/* Adust the IP relative the the start of this instruction*/
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1389,8 +1381,7 @@ void JUMP_L(struct lilith* vm, struct Instruction* c)
 {
 	if(LessThan_bit_set(vm->reg[c->reg0]))
 	{
-		/* Adust the IP relative the the start of this instruction*/
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1398,8 +1389,7 @@ void JUMP_Z(struct lilith* vm, struct Instruction* c)
 {
 	if(0 == vm->reg[c->reg0])
 	{
-		/* Adust the IP relative the the start of this instruction*/
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1407,8 +1397,7 @@ void JUMP_NZ(struct lilith* vm, struct Instruction* c)
 {
 	if(0 != vm->reg[c->reg0])
 	{
-		/* Adust the IP relative the the start of this instruction*/
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1421,7 +1410,7 @@ void CALLI(struct lilith* vm, struct Instruction* c)
 	vm->reg[c->reg0] = vm->reg[c->reg0] + reg_size;
 
 	/* Update PC */
-	vm->ip = vm->ip + c->raw_Immediate - 4;
+	vm->ip = vm->ip + c->raw_Immediate;
 }
 
 void LOADI(struct lilith* vm, struct Instruction* c)
@@ -1466,60 +1455,60 @@ void SR1I(struct lilith* vm, struct Instruction* c)
 
 void LOADR(struct lilith* vm, struct Instruction* c)
 {
-	vm->reg[c->reg0] = readin_bytes(vm, (vm->ip + c->raw_Immediate -4), false, reg_size);
+	vm->reg[c->reg0] = readin_bytes(vm, (vm->ip + c->raw_Immediate), false, reg_size);
 }
 void LOADR8(struct lilith* vm, struct Instruction* c)
 {
-	vm->reg[c->reg0] = readin_bytes(vm, (vm->ip + c->raw_Immediate -4), true, 1);
+	vm->reg[c->reg0] = readin_bytes(vm, (vm->ip + c->raw_Immediate), true, 1);
 }
 
 void LOADRU8(struct lilith* vm, struct Instruction* c)
 {
-	vm->reg[c->reg0] = readin_bytes(vm, (vm->ip + c->raw_Immediate -4), false, 1);
+	vm->reg[c->reg0] = readin_bytes(vm, (vm->ip + c->raw_Immediate), false, 1);
 }
 
 void LOADR16(struct lilith* vm, struct Instruction* c)
 {
-	vm->reg[c->reg0] = readin_bytes(vm, (vm->ip + c->raw_Immediate -4), true, 2);
+	vm->reg[c->reg0] = readin_bytes(vm, (vm->ip + c->raw_Immediate), true, 2);
 }
 
 void LOADRU16(struct lilith* vm, struct Instruction* c)
 {
-	vm->reg[c->reg0] = readin_bytes(vm, (vm->ip + c->raw_Immediate -4), false, 2);
+	vm->reg[c->reg0] = readin_bytes(vm, (vm->ip + c->raw_Immediate), false, 2);
 }
 
 void LOADR32(struct lilith* vm, struct Instruction* c)
 {
-	vm->reg[c->reg0] = readin_bytes(vm, (vm->ip + c->raw_Immediate -4), true, 4);
+	vm->reg[c->reg0] = readin_bytes(vm, (vm->ip + c->raw_Immediate), true, 4);
 }
 void LOADRU32(struct lilith* vm, struct Instruction* c)
 {
-	vm->reg[c->reg0] = readin_bytes(vm, (vm->ip + c->raw_Immediate -4), false, 4);
+	vm->reg[c->reg0] = readin_bytes(vm, (vm->ip + c->raw_Immediate), false, 4);
 }
 
 void STORER(struct lilith* vm, struct Instruction* c)
 {
-	writeout_bytes(vm, (vm->ip + c->raw_Immediate - 4), vm->reg[c->reg0], reg_size);
+	writeout_bytes(vm, (vm->ip + c->raw_Immediate), vm->reg[c->reg0], reg_size);
 }
 
 void STORER8(struct lilith* vm, struct Instruction* c)
 {
-	writeout_bytes(vm, (vm->ip + c->raw_Immediate - 4), vm->reg[c->reg0], 1);
+	writeout_bytes(vm, (vm->ip + c->raw_Immediate), vm->reg[c->reg0], 1);
 }
 
 void STORER16(struct lilith* vm, struct Instruction* c)
 {
-	writeout_bytes(vm, (vm->ip + c->raw_Immediate - 4), vm->reg[c->reg0], 2);
+	writeout_bytes(vm, (vm->ip + c->raw_Immediate), vm->reg[c->reg0], 2);
 }
 
 void STORER32(struct lilith* vm, struct Instruction* c)
 {
-	writeout_bytes(vm, (vm->ip + c->raw_Immediate - 4), vm->reg[c->reg0], 4);
+	writeout_bytes(vm, (vm->ip + c->raw_Immediate), vm->reg[c->reg0], 4);
 }
 
 void JUMP(struct lilith* vm, struct Instruction* c)
 {
-	vm->ip = vm->ip + c->raw_Immediate - 4;
+	vm->ip = vm->ip + c->raw_Immediate;
 }
 
 void JUMP_P(struct lilith* vm, struct Instruction* c)
@@ -1528,7 +1517,7 @@ void JUMP_P(struct lilith* vm, struct Instruction* c)
 	tmp1 = (signed_vm_register)(vm->reg[c->reg0]);
 	if(0 <= tmp1)
 	{
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1538,7 +1527,7 @@ void JUMP_NP(struct lilith* vm, struct Instruction* c)
 	tmp1 = (signed_vm_register)(vm->reg[c->reg0]);
 	if(0 > tmp1)
 	{
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1549,7 +1538,7 @@ void CMPJUMPI_G(struct lilith* vm, struct Instruction* c)
 	tmp2 = (signed_vm_register)(vm->reg[c->reg1]);
 	if(tmp1 > tmp2)
 	{
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1560,7 +1549,7 @@ void CMPJUMPI_GE(struct lilith* vm, struct Instruction* c)
 	tmp2 = (signed_vm_register)(vm->reg[c->reg1]);
 	if(tmp1 >= tmp2)
 	{
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1568,7 +1557,7 @@ void CMPJUMPI_E(struct lilith* vm, struct Instruction* c)
 {
 	if((vm->reg[c->reg0]) == (vm->reg[c->reg1]))
 	{
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1576,7 +1565,7 @@ void CMPJUMPI_NE(struct lilith* vm, struct Instruction* c)
 {
 	if((vm->reg[c->reg0]) != (vm->reg[c->reg1]))
 	{
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1587,7 +1576,7 @@ void CMPJUMPI_LE(struct lilith* vm, struct Instruction* c)
 	tmp2 = (signed_vm_register)(vm->reg[c->reg1]);
 	if(tmp1 <= tmp2)
 	{
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1598,7 +1587,7 @@ void CMPJUMPI_L(struct lilith* vm, struct Instruction* c)
 	tmp2 = (signed_vm_register)(vm->reg[c->reg1]);
 	if(tmp1 < tmp2)
 	{
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1606,7 +1595,7 @@ void CMPJUMPUI_G(struct lilith* vm, struct Instruction* c)
 {
 	if((vm->reg[c->reg0]) > (vm->reg[c->reg1]))
 	{
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1614,7 +1603,7 @@ void CMPJUMPUI_GE(struct lilith* vm, struct Instruction* c)
 {
 	if((vm->reg[c->reg0]) >= (vm->reg[c->reg1]))
 	{
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1622,7 +1611,7 @@ void CMPJUMPUI_LE(struct lilith* vm, struct Instruction* c)
 {
 	if((vm->reg[c->reg0]) <= (vm->reg[c->reg1]))
 	{
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1630,7 +1619,7 @@ void CMPJUMPUI_L(struct lilith* vm, struct Instruction* c)
 {
 	if((vm->reg[c->reg0]) < (vm->reg[c->reg1]))
 	{
-		vm->ip = vm->ip + c->raw_Immediate - 4;
+		vm->ip = vm->ip + c->raw_Immediate;
 	}
 }
 
@@ -1642,7 +1631,7 @@ void CMPSKIPI_G(struct lilith* vm, struct Instruction* c)
 
 	if(tmp1 > tmp2)
 	{
-		vm->ip = vm->ip + 4;
+		vm->ip = vm->ip + next_instruction_size(vm);
 	}
 }
 

@@ -69,6 +69,8 @@ this is primarily used for pointer comparisons involving hand encoded objects.
 For pointers starting with &, it is assumed that the user wants the 32bit absolute address of the label;
 this is primarily for hand encoding objects or instructions that want 32bit absolute addresses
 
+Should one wish to manually calculate the displacement field of an instruction, simply subtract the address of the byte after the immediate from the address of the target.
+
 *** More advanced?
 It is possible for a hex2 assembler to support more than just the minimal set as defined above and is frequently the case on complicated instruction sets.
 However, to be considered hex2 compliant a program should not depend on those additions.

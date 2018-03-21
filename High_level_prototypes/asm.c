@@ -483,7 +483,7 @@ void update_jumps(struct Token* head, struct Token* p)
 		if('@' == p->Text[0])
 		{
 			int16_t dist = 0;
-			dist = dest - p->address + 4;
+			dist = dest - p->address;
 			sprintf(p->Expression, "%04x", (uint16_t)dist);
 		}
 
